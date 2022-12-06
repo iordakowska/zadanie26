@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${recipe.name}">Nazwa</title>
+
+  <div th:replace="fragments :: css-style"></div>
+
+</head>
+<body>
+<div class="content">
+  <div th:replace="fragments :: header"></div>
+
+  <div class="paragraph">
+    <h2 th:text="${recipe.name}">Nazwa</h2>
+    <b>Kategoria:</b><br>
+    <span th:text="${recipe.category.getDisplayName()}"></span><br>
+    <b>Opis:</b><br>
+    <span th:text="${recipe.description}"></span><br>
+
+    <div th:replace="fragments :: footer"></div>
+
+  </div>
+
+
+</div>
+</body>
+</html>

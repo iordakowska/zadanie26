@@ -1,0 +1,9 @@
+.content {
+    width: 100%;
+    max-width: 1000px;
+    margin: 50px auto;
+}
+
+.paragraph {
+    margin-top: 50px;
+}
