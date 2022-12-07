@@ -2,19 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Wszystkie przepisy</title>
+  <title>Przepisy według kategorii</title>
 
   <div th:replace="fragments :: css-style"></div>
 
 </head>
 <body>
 <div class="content">
-  <h3>Lista wszystkich potraw: </h3>
+  <h3 th:text="${category.getDisplayName()}"></h3>
+  <p th:text="${category.getDescription()}"></p>
+  <img th:src="${category.img}">
 
-  <ul class="list-group">
+  <ul style="margin-top: 20px" class="list-group">
     <li class="list-group-item" th:each="recipe: ${recipeList}">
-      <a th:href="|/potrawa/${recipe.id}|" th:text="|${recipe.category.getDisplayName()}  -  ${recipe.name}|"></a>
-
+      <a th:href="|/potrawa/${recipe.id}|" th:text="${recipe.name}"></a>
     </li>
   </ul>
 

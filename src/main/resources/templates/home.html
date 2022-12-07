@@ -18,22 +18,18 @@
     </div>
 
     <div class="paragraph">
-        <h4>Wyświetl przepisy według kategorii:</h4>
-        <a class="btn btn-primary" href="/?category=CAKE" role="button">Ciasta</a>
-        <a class="btn btn-primary" href="/?category=DINNER" role="button">Dania główne</a>
-        <a class="btn btn-primary" href="/?category=SALAD" role="button">Sałatki</a>
+        <a href="/form">Dodaj przepis</a>
     </div>
 
     <div class="paragraph">
-        <ul class="list-group">
-            <li class="list-group-item" th:each="recipe: ${recipeList}">
-                <a th:href="|/potrawa/${recipe.id}|" th:text="|${recipe.category.getDisplayName()}  -  ${recipe.name}|"></a>
-
-            </li>
-        </ul>
-
-        <div th:replace="fragments :: footer"></div>
+        <h4>Wyświetl przepisy według kategorii:</h4>
+        <a style="margin-left: 10px" class="btn btn-primary" role="button"
+           th:each="category: ${T(com.example.zadanie26.Category).values()}"
+           th:text="${category.displayName}"
+           th:href="@{/category(category=${category.name()})}"></a>
     </div>
+
+
 </div>
 </body>
 </html>

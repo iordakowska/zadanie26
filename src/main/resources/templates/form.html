@@ -1,0 +1,40 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Dodaj</title>
+
+  <div th:replace="fragments :: css-style"></div>
+
+</head>
+<body>
+<div class="content">
+  <h3>Dodaj przepis: </h3>
+  <form style="width: 100%; max-width: 1000px; margin: auto" action="/add" method="post" th:object="${recipeToAdd}">
+    <div class="mb-3">
+      <label class="form-label">Nazwa czynności</label>
+      <textarea th:field="*{name}" class="form-control" id="name" rows="1"></textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Opis</label>
+      <textarea th:field="*{description}" class="form-control" id="description" rows="2"></textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Kategoria</label>
+      <select th:field="*{category}" class="form-select">
+        <option value="CAKE">Ciasta</option>
+        <option value="DINNER">Danie główne</option>
+        <option value="SALAD">Sałatki</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Dodaj przepis</button>
+
+
+
+
+  <div th:replace="fragments :: footer"></div>
+
+</div>
+
+</body>
+</html>
