@@ -70,6 +70,35 @@ public class MainController {
         }
     }
 
+    @GetMapping("/potrawa/{id}/edit")
+    public String showRecipeToEdit(@PathVariable Long id, Model model) {
+        Optional<Recipe> recipeOptional = recipeRepository.findById(id);
+
+        if (recipeOptional.isPresent()) {
+            Recipe recipe = recipeOptional.get();
+            model.addAttribute("recipeToEdit", recipe);
+            return "recipeEdit";
+        } else {
+            return "redirect:/";
+        }
+    }
+
+    @PostMapping("/potrawa/edit")
+    public String editRecipe(Recipe recipe) {
+        if(!recipe.getName().isEmpty()) {
+            recipeRepository.save(recipe);
+            return "redirect:/";
+        } else {
+            return "redirect:/potrawa/" + recipe.getId();
+        }
+    }
+
+
+
+
+
+
+
 
 
 
