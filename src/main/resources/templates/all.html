@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <title>Wszystkie przepisy</title>
 
-  <div th:replace="fragments :: css-style"></div>
+  <div th:replace="~{fragments :: css-style}"></div>
 
 </head>
 <body>
 <div class="content">
-    <h3>Lista wszystkich potraw: </h3>
+    <h3>Lista przepisów: </h3>
 
     <ul class="list-group">
         <li class="list-group-item" th:each="recipe: ${recipeList}">
             <a th:href="|/potrawa/${recipe.id}|" th:text="|${recipe.category.getDisplayName()}  -  ${recipe.name}|"></a>
-
         </li>
     </ul>
+
+ <!--   <div style="margin-top: 30px" class="d-grid gap-2 col-8 mx-auto">
+        <a class="btn btn-primary" href="/top" role="button">Najlepsze przepisy</a>
+    </div> -->
 
     <div th:replace="fragments :: footer"></div>
 

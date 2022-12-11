@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Książka kucharska</title>
 
-    <div th:replace="fragments :: css-style"></div>
+    <div th:replace="~{fragments :: css-style}"></div>
 
 </head>
 <body>
@@ -14,8 +14,11 @@
     <h3 style="text-align: center">Co chcesz zrobić: </h3>
 
     <div class="d-grid gap-2 col-10 mx-auto">
-        <a class="btn btn-primary" href="/all" role="button">Wyświetl wszystkie przepisy</a>
+        <a class="btn btn-primary" href="/wszystkie" role="button">Wyświetl wszystkie przepisy</a>
     </div>
+
+    <div style="margin-top: 30px" class="d-grid gap-2 col-6 mx-auto">
+        <a class="btn btn-primary" href="/top" role="button">Najlepsze przepisy</a>
 
     <div class="paragraph">
         <a href="/form">Dodaj przepis</a>
@@ -28,6 +31,10 @@
            th:text="${category.displayName}"
            th:href="@{/category(category=${category.name()})}"></a>
     </div>
+
+    <!--   <div style="margin-top: 30px" class="d-grid gap-2 col-8 mx-auto">
+       <a class="btn btn-primary" href="/top" role="button">Najlepsze przepisy</a>
+   </div> -->
 
 
 </div>

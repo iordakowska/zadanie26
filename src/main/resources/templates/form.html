@@ -3,15 +3,16 @@
   <meta charset="UTF-8">
   <title>Dodaj</title>
 
-  <div th:replace="fragments :: css-style"></div>
+  <div th:replace="~{fragments :: css-style}"></div>
 
 </head>
 <body>
 <div class="content">
   <h3>Dodaj przepis: </h3>
-  <form style="width: 100%; max-width: 1000px; margin: auto" action="/add" method="post" th:object="${recipeToAdd}">
+  <form style="width: 100%; max-width: 1000px; margin: auto" action="/add" method="post" th:object="${recipe}">
+    <input th:field="${recipe.id}" hidden>
     <div class="mb-3">
-      <label class="form-label">Nazwa czynności</label>
+      <label class="form-label">Nazwa</label>
       <textarea th:field="*{name}" class="form-control" id="name" rows="1"></textarea>
     </div>
     <div class="mb-3">
@@ -21,9 +22,9 @@
     <div class="mb-3">
       <label class="form-label">Kategoria</label>
       <select th:field="*{category}" class="form-select">
-        <option value="CAKE">Ciasta</option>
-        <option value="DINNER">Danie główne</option>
-        <option value="SALAD">Sałatki</option>
+        <option th:each="category: ${T(com.example.zadanie26.Category).values()}"
+                th:value="${category.name()}"
+                th:text="${category.displayName}">Kategoria</option>
       </select>
     </div>
 

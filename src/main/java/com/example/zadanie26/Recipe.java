@@ -16,15 +16,15 @@ public class Recipe {
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    private Integer likeIt;
+    /*private int like = 0;
 
-    public Integer getLikeIt() {
-        return likeIt;
+    public int getLike() {
+        return like;
     }
 
-    public void setLikeIt(Integer likeIt) {
-        this.likeIt = likeIt;
-    }
+    public void setLike(int like) {
+        this.like = like;
+    }*/
 
     public Long getId() {
         return id;

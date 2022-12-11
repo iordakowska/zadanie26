@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title th:text="${recipe.name}">Nazwa</title>
 
-  <div th:replace="fragments :: css-style"></div>
+  <div th:replace="~{fragments :: css-style}"></div>
 
 </head>
 <body>
@@ -17,14 +17,20 @@
     <span th:text="${recipe.category.getDisplayName()}"></span><br>
     <b>Opis:</b><br>
     <span th:text="${recipe.description}"></span><br>
+<!--    <h5 th:text="|LUBIĘ TO:   ${recipe.likes}|"></h5>  -->
+
   </div>
+<!--
+  <div class="d-grid gap-2 col-6 mx-auto" >
+    <a class="btn btn-primary" th:href="|/potrawa/${recipe.id}/polubienia|" role="button">Lubię to :)</a>
+  </div> -->
 
   <div style="margin-top: 30px">
     <a th:href="|/potrawa/${recipe.id}/edit|" >Edytuj przepis</a>
   </div>
 
-  <div class="d-grid gap-2 col-6 mx-auto" >
-    <button class="btn btn-primary" type="button">Lubię to !</button>
+  <div style="margin-top: 50px">
+    <a th:href="|/potrawa/${recipe.id}/usun|">Usuń przepis</a>
   </div>
 
   <div th:replace="fragments :: footer"></div>
