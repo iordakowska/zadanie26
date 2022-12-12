@@ -84,24 +84,25 @@ public class RecipeController {
         return "deleteInfo";
     }
 
-    /*@GetMapping("/potrawa/{id}/polubienia}")
+    @GetMapping("/potrawa/{id}/polubienia")
     public String likeIt(@PathVariable Long id, Model model) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
 
         if (recipeOptional.isPresent()) {
             Recipe recipe = recipeOptional.get();
+            recipe.setLikes(recipe.getLikes()+1);
             recipeRepository.save(recipe);
             model.addAttribute("recipe", recipe);
             return "redirect:/potrawa/{id}";
         } else {
             return "redirect:/";
         }
-    }*/
+    }
 
     @GetMapping("/top")
-    public String topRecipes(Model model, String name) {
+    public String topRecipes(Model model) {
 
-        List<Recipe> recipeList = recipeRepository.findAll(); //testowo - nie działa inna metoda
+        List<Recipe> recipeList = recipeRepository.findAllByOrderByLikesDesc();
         model.addAttribute("recipeList", recipeList);
         return "all";
     }
