@@ -11,7 +11,7 @@
 <div class="content">
   <h3 th:text="${category.name}"></h3>
   <p th:text="${category.description}"></p>
-  <img th:src="${category.image}">
+  <img th:src="${category.image}" alt=":)"/>
 
   <ul style="margin-top: 20px" class="list-group">
     <li class="list-group-item" th:each="recipe: ${recipeList}">
@@ -19,7 +19,7 @@
     </li>
   </ul>
 
-  <div th:replace="fragments :: footer"></div>
+  <div th:replace="~{fragments :: footer}"></div>
 
 </div>
 

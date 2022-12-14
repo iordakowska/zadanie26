@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="content">
-  <div th:replace="fragments :: header"></div>
+  <div th:replace="~{fragments :: header}"></div>
 
   <div class="paragraph">
     <h2 th:text="${recipe.name}">Nazwa</h2>
@@ -33,7 +33,7 @@
     <a th:href="|/potrawa/${recipe.id}/usun|">Usuń przepis</a>
   </div>
 
-  <div th:replace="fragments :: footer"></div>
+  <div th:replace="~{fragments :: footer}"></div>
 
 </div>
 </body>

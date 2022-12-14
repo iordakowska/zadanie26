@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Info</title>
+  <title>Top najlepszych</title>
 
   <div th:replace="~{fragments :: css-style}"></div>
 
@@ -10,13 +10,19 @@
 <body>
 <div class="content">
 
-  <div th:replace="~{fragments :: css-style}"></div>
   <div th:replace="~{fragments :: header}"></div>
 
-  <h3 style="margin-top: 10px">Przepis usunięty</h3>
-  
+  <h3 style="margin-top: 20px">TOP 10: </h3>
+
+  <ul class="list-group">
+    <li class="list-group-item" th:each="recipe: ${recipeList}">
+      <a th:href="|/potrawa/${recipe.id}|" th:text="|${recipe.name} -    -  ${recipe.likes} LIKE|"></a>
+    </li>
+  </ul>
+
   <div th:replace="~{fragments :: footer}"></div>
 
 </div>
+
 </body>
 </html>

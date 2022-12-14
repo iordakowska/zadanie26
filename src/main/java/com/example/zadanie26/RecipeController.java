@@ -64,9 +64,9 @@ public class RecipeController {
 
     @GetMapping("/form")
     public String form(Model model) {
-        model.addAttribute("recipe", new Recipe());
         List<Category> categoryList = categoryRepository.findAll();
         model.addAttribute("category", categoryList);
+        model.addAttribute("recipe", new Recipe());
         return "form";
     }
 
@@ -85,8 +85,10 @@ public class RecipeController {
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
 
         if (recipeOptional.isPresent()) {
+            List<Category> categoryList = categoryRepository.findAll();
             Recipe recipe = recipeOptional.get();
             model.addAttribute("recipe", recipe);
+            model.addAttribute("category", categoryList);
             return "form";
         } else {
             return "redirect:/";

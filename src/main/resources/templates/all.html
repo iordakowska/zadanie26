@@ -10,7 +10,7 @@
 <body>
 <div class="content">
 
-    <div th:replace="fragments :: header"></div>
+    <div th:replace="~{fragments :: header}"></div>
 
     <h3 style="margin-top: 20px">Lista przepisów: </h3>
 
@@ -20,7 +20,7 @@
         </li>
     </ul>
 
-    <div th:replace="fragments :: footer"></div>
+    <div th:replace="~{fragments :: footer}"></div>
 
 </div>
 

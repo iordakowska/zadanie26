@@ -1,6 +1,6 @@
 INSERT INTO CATEGORY (name, description, image)
 VALUES
-    ('Ciasto','słodkie przekąski', 'cake.jpg'),
+    ('Ciasto','słodkie przekąski', 'cake'),
     ('Obiad','dania główne', 'dinner.jpg'),
     ('Sałatka','lekkie przekąski', 'salad.jpg');
 

@@ -8,6 +8,7 @@
 </head>
 <body>
 <div class="content">
+  <div th:replace="~{fragments :: header}"></div>
   <h3>Dodaj przepis: </h3>
   <form style="width: 100%; max-width: 1000px; margin: auto" action="/add" method="post" th:object="${recipe}">
     <input th:field="${recipe.id}" hidden>
@@ -23,7 +24,7 @@
       <label class="form-label">Kategoria</label>
       <select th:field="*{category}" class="form-select">
         <option th:each="cat: ${category}"
-                th:value="${cat.name}"
+                th:value="${cat.id}"
                 th:text="${cat.name}">Kategoria</option>
       </select>
     </div>
@@ -33,7 +34,7 @@
 
 
 
-  <div th:replace="fragments :: footer"></div>
+  <div th:replace="~{fragments :: footer}"></div>
 
 </div>
 
