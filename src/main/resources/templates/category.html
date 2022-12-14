@@ -9,9 +9,9 @@
 </head>
 <body>
 <div class="content">
-  <h3 th:text="${category.getDisplayName()}"></h3>
-  <p th:text="${category.getDescription()}"></p>
-  <img th:src="${category.img}">
+  <h3 th:text="${category.name}"></h3>
+  <p th:text="${category.description}"></p>
+  <img th:src="${category.image}">
 
   <ul style="margin-top: 20px" class="list-group">
     <li class="list-group-item" th:each="recipe: ${recipeList}">

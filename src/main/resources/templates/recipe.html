@@ -14,7 +14,7 @@
   <div class="paragraph">
     <h2 th:text="${recipe.name}">Nazwa</h2>
     <b>Kategoria:</b><br>
-    <span th:text="${recipe.category.getDisplayName()}"></span><br>
+    <span th:text="${recipe.category.name}"></span><br>
     <b>Opis:</b><br>
     <span th:text="${recipe.description}"></span><br>
     <h5 th:text="|LUBIĘ TO:   ${recipe.likes}|"></h5>

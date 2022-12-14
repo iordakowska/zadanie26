@@ -22,9 +22,9 @@
     <div class="mb-3">
       <label class="form-label">Kategoria</label>
       <select th:field="*{category}" class="form-select">
-        <option th:each="category: ${T(com.example.zadanie26.Category).values()}"
-                th:value="${category.name()}"
-                th:text="${category.displayName}">Kategoria</option>
+        <option th:each="cat: ${category}"
+                th:value="${cat.name}"
+                th:text="${cat.name}">Kategoria</option>
       </select>
     </div>
 

@@ -1,29 +1,52 @@
 package com.example.zadanie26;
 
-public enum Category {
-    CAKE("Ciasta", "Słodkie przekąski", "cake.jpg"),
-    DINNER("Dania główne", "Obiad pełnowartościowy", "dinner.jpg"),
-    SALAD("Sałatki", "Lekkie przekąski", "salad.jpg");
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-    private String displayName;
+@Entity
+public class Category {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
     private String description;
-    private String img;
 
-    Category(String displayName, String description, String img) {
-        this.displayName = displayName;
-        this.description = description;
-        this.img = img;
+    private String image;
+
+    public String getImage() {
+        return image;
     }
 
-    public String getDisplayName() {
-        return displayName;
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public String getImg() {
-        return img;
+    public void setDescription(String description) {
+        this.description = description;
     }
+
+
 }

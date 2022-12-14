@@ -13,9 +13,11 @@ import java.util.Optional;
 public class RecipeController {
 
     private RecipeRepository recipeRepository;
+    private CategoryRepository categoryRepository;
 
-    public RecipeController(RecipeRepository recipeRepository) {
+    public RecipeController(RecipeRepository recipeRepository, CategoryRepository categoryRepository) {
         this.recipeRepository = recipeRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @GetMapping("/wszystkie")
@@ -39,15 +41,38 @@ public class RecipeController {
         }
     }
 
+    @GetMapping("/potrawa/{id}/usun")
+    public String delete(@PathVariable Long id) {
+        recipeRepository.deleteById(id);
+        return "deleteInfo";
+    }
+
+    @GetMapping("/potrawa/{id}/polubienia")
+    public String likeIt(@PathVariable Long id, Model model) {
+        Optional<Recipe> recipeOptional = recipeRepository.findById(id);
+
+        if (recipeOptional.isPresent()) {
+            Recipe recipe = recipeOptional.get();
+            recipe.setLikes(recipe.getLikes() + 1);
+            recipeRepository.save(recipe);
+            model.addAttribute("recipe", recipe);
+            return "redirect:/potrawa/{id}";
+        } else {
+            return "redirect:/";
+        }
+    }
+
     @GetMapping("/form")
     public String form(Model model) {
         model.addAttribute("recipe", new Recipe());
+        List<Category> categoryList = categoryRepository.findAll();
+        model.addAttribute("category", categoryList);
         return "form";
     }
 
     @PostMapping("/add")
     public String addRecipe(Recipe recipe) {
-        if(!recipe.getName().isEmpty()) {
+        if (!recipe.getName().isEmpty()) {
             recipeRepository.save(recipe);
             return "redirect:/";
         } else {
@@ -70,7 +95,7 @@ public class RecipeController {
 
     @PostMapping("/potrawa/edit")
     public String editRecipe(Recipe recipe) {
-        if(!recipe.getName().isEmpty()) {
+        if (!recipe.getName().isEmpty()) {
             recipeRepository.save(recipe);
             return "redirect:/";
         } else {
@@ -78,33 +103,17 @@ public class RecipeController {
         }
     }
 
-    @GetMapping("/potrawa/{id}/usun")
-    public String delete(@PathVariable Long id) {
-        recipeRepository.deleteById(id);
-        return "deleteInfo";
-    }
-
-    @GetMapping("/potrawa/{id}/polubienia")
-    public String likeIt(@PathVariable Long id, Model model) {
-        Optional<Recipe> recipeOptional = recipeRepository.findById(id);
-
-        if (recipeOptional.isPresent()) {
-            Recipe recipe = recipeOptional.get();
-            recipe.setLikes(recipe.getLikes()+1);
-            recipeRepository.save(recipe);
-            model.addAttribute("recipe", recipe);
-            return "redirect:/potrawa/{id}";
-        } else {
-            return "redirect:/";
-        }
-    }
-
     @GetMapping("/top")
     public String topRecipes(Model model) {
 
-        List<Recipe> recipeList = recipeRepository.findAllByOrderByLikesDesc();
-        model.addAttribute("recipeList", recipeList);
-        return "all";
+        List<Recipe> recipeList = recipeRepository.findRecipesByOrderByLikesDesc();
+        List<Recipe> topList = recipeList.subList(0, 5);
+        model.addAttribute("recipeList", topList);
+        return "top";
     }
 
+    private List<Recipe> showTopRecipe(List<Recipe> list, int limit) {
+        List<Recipe> topList = list.subList(0, limit - 1);
+        return topList;
+    }
 }

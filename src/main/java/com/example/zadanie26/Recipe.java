@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 @Entity
 public class Recipe {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -13,20 +12,10 @@ public class Recipe {
 
     private String description;
 
-    @Enumerated(EnumType.STRING)
-    private Category category;
-
-    public int getLikes() {
-        return likes;
-    }
-
-    public void setLikes(int likes) {
-        this.likes = likes;
-    }
-
     private int likes = 0;
 
-
+    @ManyToOne
+    private Category category;
 
     public Long getId() {
         return id;
@@ -50,6 +39,14 @@ public class Recipe {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 
     public Category getCategory() {
