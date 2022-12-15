@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Książka kucharska</title>
+
+    <div th:replace="~{fragments :: css-style}"></div>
+
+</head>
+<body>
+<div class="content">
+    <div th:replace="~{fragments :: header}"></div>
+
+    <h3 style="text-align: center">Co chcesz zrobić: </h3>
+
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <a class="btn btn-primary" href="/wszystkie" role="button">Wyświetl wszystkie przepisy</a>
+        </div>
+
+        <div style="margin-top: 30px" class="d-grid gap-2 col-6 mx-auto">
+            <a class="btn btn-primary" href="/top" role="button">Najlepsze przepisy</a>
+        </div>
+
+           <div class="paragraph">
+               <a href="/form">Dodaj przepis</a>
+           </div>
+
+               <div class="paragraph">
+                   <h4>Wyświetl przepisy według kategorii:</h4>
+                   <a style="margin-left: 10px" class="btn btn-primary" role="button"
+                      th:each="cat: ${category}"
+                      th:text="${cat.name}"
+                      th:href="@{|/category/${cat.id}|}"></a>
+               </div>
+    <!--
+       <div style="margin-top: 30px" class="d-grid gap-2 col-8 mx-auto">
+     <a class="btn btn-primary" href="/top" role="button">Najlepsze przepisy</a>
+    </div> -->
+
+
+</div>
+</body>
+</html>
